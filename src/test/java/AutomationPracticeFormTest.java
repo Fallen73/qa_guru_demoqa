@@ -18,6 +18,8 @@ public class AutomationPracticeFormTest {
     @Test
     void practiceFormTest() {
         open("/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         $("#firstName").setValue("Oleg");
         $("#lastName").setValue("Oleg2");
         $("#userEmail").setValue("test@test.test");
@@ -31,7 +33,6 @@ public class AutomationPracticeFormTest {
         $("#hobbiesWrapper").$(byText("Music")).click();
         $("#uploadPicture").uploadFromClasspath("test.png");
         $("#currentAddress").setValue("Test address");
-        executeJavaScript("arguments[0].scrollIntoView();",   $("#submit") );
         $("#react-select-3-input").setValue("Haryana").pressEnter();
         $("#react-select-4-input").setValue("Panipat").pressEnter();
         $("#submit").click();
