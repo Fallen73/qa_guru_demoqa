@@ -9,10 +9,10 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class CalendarComponent {
 
-    private SelenideElement
+    private final SelenideElement
             yearSelect = $(".react-datepicker__year-select"),
             monthSelect = $(".react-datepicker__month-select");
-    private ElementsCollection daySelect = $$(".react-datepicker__day");
+    private final ElementsCollection daySelect = $$(".react-datepicker__day");
 
     public void setDate(String year, String month, String day) {
         yearSelect.selectOption(year);

@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import components.CalendarComponent;
 import components.TableResultComponent;
+import utils.JsActionsHelper;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -11,7 +12,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationFormPage {
 
-    private SelenideElement
+    private final SelenideElement
             studentRegistrationForm = $(".practice-form-wrapper"),
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
@@ -28,16 +29,16 @@ public class RegistrationFormPage {
             buttonSubmit = $("#submit"),
             tableResultRegistrationForm = $(".table-responsive");
 
-    private String namePageStudentRegistrationForm = "Student Registration Form";
+    private final String namePageStudentRegistrationForm = "Student Registration Form";
 
+    JsActionsHelper jsActionsHelper = new JsActionsHelper();
     CalendarComponent calendarComponent = new CalendarComponent();
     TableResultComponent tableResultComponent = new TableResultComponent();
 
     public RegistrationFormPage openPage () {
         open("/automation-practice-form");
         studentRegistrationForm.shouldHave(Condition.text(namePageStudentRegistrationForm));
-        executeJavaScript("document.querySelector('#fixedban')?.remove()");
-        executeJavaScript("document.querySelector('footer')?.remove()");
+        jsActionsHelper.removeFixedElements();
 
         return this;
     }
