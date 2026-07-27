@@ -31,14 +31,12 @@ public class RegistrationFormPage {
 
     private final String namePageStudentRegistrationForm = "Student Registration Form";
 
-    JsActionsHelper jsActionsHelper = new JsActionsHelper();
     CalendarComponent calendarComponent = new CalendarComponent();
     TableResultComponent tableResultComponent = new TableResultComponent();
 
     public RegistrationFormPage openPage () {
         open("/automation-practice-form");
         studentRegistrationForm.shouldHave(Condition.text(namePageStudentRegistrationForm));
-        jsActionsHelper.removeFixedElements();
 
         return this;
     }

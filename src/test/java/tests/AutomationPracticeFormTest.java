@@ -3,15 +3,18 @@ package tests;
 import config.BaseConfig;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
+import utils.JsActionsHelper;
 
 public class AutomationPracticeFormTest extends BaseConfig {
 
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
+    JsActionsHelper jsActionsHelper = new JsActionsHelper();
 
     @Test
     void fullFieldsRegistrationFormTest() {
+        registrationFormPage.openPage();
+        jsActionsHelper.removeFixedElements();
         registrationFormPage
-                .openPage()
                 .setFirstName("Oleg")
                 .setLastName("Oleg2")
                 .setEmail("test@test.test")
