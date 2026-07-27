@@ -43,9 +43,9 @@ public class AutomationPracticeFormTest extends BaseConfig {
 
     @Test
     void onlyRequiredFieldsRegistrationFormTest() {
-        registrationFormPage
-                .openPage()
-                .setFirstName("Oleg")
+        registrationFormPage.openPage();
+        jsActionsHelper.removeFixedElements();
+        registrationFormPage.setFirstName("Oleg")
                 .setLastName("Oleg2")
                 .setGender("Male")
                 .setUserNamber("9999999999")
@@ -58,10 +58,9 @@ public class AutomationPracticeFormTest extends BaseConfig {
 
     @Test
     void negativeRegistrationFormTest() {
-        registrationFormPage
-                .openPage()
-                .buttonSubmitClick();
-        registrationFormPage
-                .checkNegativeResult();
+        registrationFormPage.openPage();
+        jsActionsHelper.removeFixedElements();
+        registrationFormPage.buttonSubmitClick();
+        registrationFormPage.checkNegativeResult();
     }
 }
