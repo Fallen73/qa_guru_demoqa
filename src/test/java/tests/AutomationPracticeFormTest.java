@@ -1,59 +1,64 @@
 package tests;
 
 import config.BaseConfig;
+import data.UserData;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 import utils.JsActionsHelper;
+
+import static data.UserData.*;
 
 public class AutomationPracticeFormTest extends BaseConfig {
 
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
     JsActionsHelper jsActionsHelper = new JsActionsHelper();
+    UserData userData = new UserData();
 
     @Test
     void fullFieldsRegistrationFormTest() {
         registrationFormPage.openPage();
         jsActionsHelper.removeFixedElements();
         registrationFormPage
-                .setFirstName("Oleg")
-                .setLastName("Oleg2")
-                .setEmail("test@test.test")
-                .setGender("Male")
-                .setUserNamber("9999999999")
-                .setDateOfBirth("1992", "January", "10")
-                .setSubjects("physics")
-                .setHobbiesWrapper("Music")
-                .setUploadPicture("test.png")
-                .setCurrentAddress("Test address")
-                .setState("Haryana")
-                .setCity("Panipat")
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(testEmail)
+                .setGender(userData.getGender())
+                .setUserNamber(phoneNumber)
+                .setDateOfBirth(userData.getYear(), userData.getMonth(), userData.getDay())
+                .setSubjects(userData.getSubjects())
+                .setHobbiesWrapper(userData.getHobbies())
+                .setUploadPicture(nameFile)
+                .setCurrentAddress(streetAddress)
+                .setState(userData.getState())
+                .setCity(userData.getCity())
                 .buttonSubmitClick();
         registrationFormPage
-                .checkResult("Student Name", "Oleg Oleg2")
-                .checkResult("Student Email", "test@test.test")
-                .checkResult("Gender", "Male")
-                .checkResult("Mobile", "9999999999")
-                .checkResult("Date of Birth", "10 January,1992")
-                .checkResult("Subjects", "Physics")
-                .checkResult("Hobbies", "Music")
-                .checkResult("Picture", "test.png")
-                .checkResult("Address", "Test address")
-                .checkResult("State and City", "Haryana Panipat");
+                .checkResult("Student Name", firstName + " " + lastName)
+                .checkResult("Student Email", testEmail)
+                .checkResult("Gender", userData.getGender())
+                .checkResult("Mobile", phoneNumber)
+                .checkResult("Date of Birth", userData.getDay() + " " + userData.getMonth() + "," + userData.getYear())
+                .checkResult("Subjects", userData.getSubjects())
+                .checkResult("Hobbies", userData.getHobbies())
+                .checkResult("Picture", nameFile)
+                .checkResult("Address", streetAddress)
+                .checkResult("State and City", userData.getState() + " " + userData.getCity());
     }
 
     @Test
     void onlyRequiredFieldsRegistrationFormTest() {
         registrationFormPage.openPage();
         jsActionsHelper.removeFixedElements();
-        registrationFormPage.setFirstName("Oleg")
-                .setLastName("Oleg2")
-                .setGender("Male")
-                .setUserNamber("9999999999")
+        registrationFormPage
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setGender(userData.getGender())
+                .setUserNamber(phoneNumber)
                 .buttonSubmitClick();
         registrationFormPage
-                .checkResult("Student Name", "Oleg Oleg2")
-                .checkResult("Gender", "Male")
-                .checkResult("Mobile", "9999999999");
+                .checkResult("Student Name", firstName + " " + lastName)
+                .checkResult("Gender", userData.getGender())
+                .checkResult("Mobile", phoneNumber);
     }
 
     @Test
