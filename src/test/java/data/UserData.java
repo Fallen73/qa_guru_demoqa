@@ -10,13 +10,13 @@ import java.util.Locale;
 
 public class UserData {
 
-    static Faker faker = new Faker();
+    Faker faker = new Faker();
 
-    public static String firstName = faker.name().firstName();
-    public static String lastName = faker.name().lastName();
-    public static String testEmail = faker.internet().emailAddress();
-    public static String streetAddress = faker.address().streetAddress();
-    public static String phoneNumber = faker.numerify("##########");
+    public String firstName = faker.name().firstName();
+    public String lastName = faker.name().lastName();
+    public String testEmail = faker.internet().emailAddress();
+    public String streetAddress = faker.address().streetAddress();
+    public String phoneNumber = faker.numerify("##########");
 
     public static String nameFile = "test.png";
 

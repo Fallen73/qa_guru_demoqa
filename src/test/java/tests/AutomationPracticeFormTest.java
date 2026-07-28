@@ -19,29 +19,29 @@ public class AutomationPracticeFormTest extends BaseConfig {
         registrationFormPage.openPage();
         jsActionsHelper.removeFixedElements();
         registrationFormPage
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(testEmail)
+                .setFirstName(userData.firstName)
+                .setLastName(userData.lastName)
+                .setEmail(userData.testEmail)
                 .setGender(userData.getGender())
-                .setUserNamber(phoneNumber)
+                .setUserNamber(userData.phoneNumber)
                 .setDateOfBirth(userData.getYear(), userData.getMonth(), userData.getDay())
                 .setSubjects(userData.getSubjects())
                 .setHobbiesWrapper(userData.getHobbies())
                 .setUploadPicture(nameFile)
-                .setCurrentAddress(streetAddress)
+                .setCurrentAddress(userData.streetAddress)
                 .setState(userData.getState())
                 .setCity(userData.getCity())
                 .buttonSubmitClick();
         registrationFormPage
-                .checkResult("Student Name", firstName + " " + lastName)
-                .checkResult("Student Email", testEmail)
+                .checkResult("Student Name", userData.firstName + " " + userData.lastName)
+                .checkResult("Student Email", userData.testEmail)
                 .checkResult("Gender", userData.getGender())
-                .checkResult("Mobile", phoneNumber)
+                .checkResult("Mobile", userData.phoneNumber)
                 .checkResult("Date of Birth", userData.getDay() + " " + userData.getMonth() + "," + userData.getYear())
                 .checkResult("Subjects", userData.getSubjects())
                 .checkResult("Hobbies", userData.getHobbies())
                 .checkResult("Picture", nameFile)
-                .checkResult("Address", streetAddress)
+                .checkResult("Address", userData.streetAddress)
                 .checkResult("State and City", userData.getState() + " " + userData.getCity());
     }
 
@@ -50,15 +50,15 @@ public class AutomationPracticeFormTest extends BaseConfig {
         registrationFormPage.openPage();
         jsActionsHelper.removeFixedElements();
         registrationFormPage
-                .setFirstName(firstName)
-                .setLastName(lastName)
+                .setFirstName(userData.firstName)
+                .setLastName(userData.lastName)
                 .setGender(userData.getGender())
-                .setUserNamber(phoneNumber)
+                .setUserNamber(userData.phoneNumber)
                 .buttonSubmitClick();
         registrationFormPage
-                .checkResult("Student Name", firstName + " " + lastName)
+                .checkResult("Student Name", userData.firstName + " " + userData.lastName)
                 .checkResult("Gender", userData.getGender())
-                .checkResult("Mobile", phoneNumber);
+                .checkResult("Mobile", userData.phoneNumber);
     }
 
     @Test
