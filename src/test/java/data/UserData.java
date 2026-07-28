@@ -37,7 +37,7 @@ public class UserData {
         subjects = getRandomSubjects();
         hobbies = getRandomHobbies();
         state = getRandomState();
-        city = getRandomCity();
+        city = getRandomCity(state);
     }
 
     public String getGender() {
@@ -110,9 +110,7 @@ public class UserData {
         return faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
     }
 
-    private String getRandomCity() {
-        String state = getRandomState();
-
+    private String getRandomCity(String state) {
         return switch (state) {
             case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
             case "Uttar Pradesh" -> faker.options().option("Agra", "Lucknow", "Merrut");
