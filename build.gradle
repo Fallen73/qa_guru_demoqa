@@ -1,23 +1,41 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '4.1.0'
 }
 
 group = 'com.fallen'
 version = '1.0-SNAPSHOT'
+
+allure {
+    version = "2.45.0"
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.11.4')
-    testImplementation (
-            "com.codeborne:selenide:6.19.1",
-            'org.junit.jupiter:junit-jupiter',
-            'com.github.javafaker:javafaker:1.0.2'
-    )
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.14.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'
+    testImplementation 'com.codeborne:selenide:7.0.1'
+    testImplementation 'io.qameta.allure:allure-selenide:2.35.4'
 }
 
-test {
+tasks.withType(Test).configureEach {
     useJUnitPlatform()
+    systemProperties(System.getProperties())
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+tasks.register('registration_form_test', Test) {
+    useJUnitPlatform {
+        includeTags("registration_form")
+    }
 }
