@@ -2,12 +2,16 @@ package tests;
 
 import config.BaseConfig;
 import data.UserData;
+import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 import utils.JsActionsHelper;
 
 import static data.UserData.*;
 
+@DisplayName("Форма регистрации")
 public class AutomationPracticeFormTest extends BaseConfig {
 
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
@@ -15,6 +19,12 @@ public class AutomationPracticeFormTest extends BaseConfig {
     UserData userData = new UserData();
 
     @Test
+    @Feature("Форма регистрации")
+    @Story("Проверка заполнения формы регистрации")
+    @Owner("fallen")
+    @Tag("registration_form")
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Проверка регистрации со всеми заполненными полями")
     void fullFieldsRegistrationFormTest() {
         registrationFormPage.openPage();
         jsActionsHelper.removeFixedElements();
@@ -46,6 +56,13 @@ public class AutomationPracticeFormTest extends BaseConfig {
     }
 
     @Test
+    @Feature("Форма регистрации")
+    @Story("Проверка заполнения формы регистрации")
+    @Owner("fallen")
+    @Severity(SeverityLevel.CRITICAL)
+    @Tag("smoke")
+    @Tag("registration_form")
+    @DisplayName("Проверка регистрации с заполненными только обязательными полями")
     void onlyRequiredFieldsRegistrationFormTest() {
         registrationFormPage.openPage();
         jsActionsHelper.removeFixedElements();
@@ -62,6 +79,12 @@ public class AutomationPracticeFormTest extends BaseConfig {
     }
 
     @Test
+    @Feature("Форма регистрации")
+    @Story("Проверка заполнения формы регистрации")
+    @Owner("fallen")
+    @Severity(SeverityLevel.NORMAL)
+    @Tag("registration_form")
+    @DisplayName("Проверка не доступности регистрации когда все поля пустые")
     void negativeRegistrationFormTest() {
         registrationFormPage.openPage();
         jsActionsHelper.removeFixedElements();
