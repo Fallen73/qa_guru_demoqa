@@ -12,13 +12,17 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.Map;
 
 public class BaseConfig {
+    private static final String SELENOID_URL = System.getProperty("selenoid_Url");
+    private static final String SELENOID_LOGIN = System.getProperty("selenoid_Login");
+    private static final String SELENOID_PASSWORD = System.getProperty("selenoid_Password");
 
     @BeforeAll
     static void setupConfig() {
-        Configuration.browserSize = "1980x1200";
-        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserSize = System.getProperty("browser_Size", "1980x1200");
+        Configuration.baseUrl = System.getProperty("base_Url");
         Configuration.pageLoadStrategy = "eager";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = "https://" + SELENOID_LOGIN + ":" + SELENOID_PASSWORD + "@" + SELENOID_URL  + "/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
@@ -35,7 +39,7 @@ public class BaseConfig {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
-        Attach.addVideo();
+        Attach.addVideo(SELENOID_URL);
         Selenide.closeWebDriver();
     }
 }
