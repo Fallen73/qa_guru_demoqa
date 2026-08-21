@@ -19,6 +19,7 @@ public class BaseConfig {
     @BeforeAll
     static void setupConfig() {
         Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserVersion = System.getProperty("browser_Version");
         Configuration.browserSize = System.getProperty("browser_Size", "1980x1200");
         Configuration.baseUrl = System.getProperty("base_Url");
         Configuration.pageLoadStrategy = "eager";
