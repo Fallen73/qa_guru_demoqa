@@ -42,3 +42,12 @@ tasks.register('registration_form_test', Test) {
         includeTags("registration_form")
     }
 }
+
+tasks.register('smoke_test', Test) {
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+
+    useJUnitPlatform {
+        includeTags("smoke")
+    }
+}
